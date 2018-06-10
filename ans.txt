@@ -1,0 +1,118 @@
+'''
+Q.1- Extract the user id, domain name and suffix from the following 
+email addresses.
+emails = "zuck26@facebook.com" "page33@google.com"
+"jeff42@amazon.com"
+desired_output = [('zuck26', 'facebook', 'com'), ('page33', 'google', 
+'com'), ('jeff42', 'amazon', 'com')]
+'''
+import re
+emails=["zuck26@facebook.com","page33@google.com","jeff42@amazon.com"]
+desired_outputs=[]
+
+for i in range(len(emails)):
+    l = re.split('\W',emails[i])
+    desired_outputs.append(l)
+
+print(desired_outputs)
+
+
+
+
+
+'''
+Q.2- Retrieve all the words starting with 'b' or 'B' from the following 
+text.
+text = "Betty bought a bit of butter, But the butter was so bitter, So 
+she bought some better butter, To make the bitter butter better."
+'''
+
+import re
+lst = re.findall('[bB]\w*', 'Betty bought a bit of butter, But the 
+butter was so bitter, So she bought some better butter, To make the 
+bitter butter better')
+
+print(lst)
+
+
+'''
+Q.3- Split the following irregular sentence into words
+sentence = "A, very very; irregular_sentence"
+desired_output = "A very very irregular sentence"
+'''
+
+
+
+import re
+sentence = "A, very very; irregular_sentence"
+desired_output = "A very very irregular sentence"
+
+print("Sentence:\n",sentence)
+print('Desired Output:\n',desired_output)
+
+l= re.split('[^a-zA-Z)]',sentence)
+
+s=''
+for i in range(len(l)):
+    if l[i]!='':
+        s+=l[i]+' '
+                   
+
+print("Output:\n",s)
+
+
+
+
+'''
+Q.1- Clean up the following tweet so that it contains only the user's 
+message.
+That is, remove all URLs, hashtags, mentions, punctuations, RTs and CCs.
+tweet = Good advice! RT @TheNextWeb: What I would do differently if I 
+was learning to code today http://t.co/lbwej0pxOd cc: @garybernhardt 
+#rstats
+desired_output = 'Good advice What I would do differently if I was 
+learning to code today'
+'''
+
+import re
+tweet= "Good advice! RT @TheNextWeb: What I would do differently if I 
+was learning to code today http://t.co/lbwej0pxOd cc: @garybernhardt 
+#rstats"
+desired_output = "Good advice What I would do differently if I was 
+learning to code today"
+
+print("Tweet:\n",tweet)
+print('Desired Output:\n',desired_output)
+
+#removing URLs
+s=re.sub('http[\S]*','',tweet)
+
+#removing hashtags
+s=re.sub('#[\w]*','',s)
+
+#removing mentions
+s=re.sub('@[\w]*','',s)
+
+#removing puntuations
+s=re.sub('[,.;:\'!?]','',s)
+
+#removing RTs
+s=re.sub('RT','',s)
+
+#removing CCs
+s=re.sub('cc','',s)
+s=re.sub('CC','',s)
+
+
+
+l= re.split(' ',s)
+
+
+result=''
+for i in range(len(l)):
+    if l[i]!='':
+        result+=l[i]+' '
+                   
+
+
+print("Output:\n",result)
